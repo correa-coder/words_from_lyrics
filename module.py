@@ -49,7 +49,11 @@ def extract_words(lyrics: str):
     for symbol in symbols:
         lyrics = lyrics.replace(symbol, ' ')
 
-    # TODO: remove filler words such as na-na-na, ooh ...
+    # remove filler words such as na-na-na, ooh ...
+    ignored_words = json_data['ignored_words']
+
+    for word in ignored_words:
+        lyrics = lyrics.replace(word, '')
 
     # remove line breaks
     if '\n' in lyrics:
