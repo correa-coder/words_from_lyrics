@@ -28,6 +28,12 @@ def load_json(path):
     return content
 
 
+def load_settings():
+    base_path = os.path.dirname(__file__)
+    settings_path = os.path.join(base_path, 'settings.json')
+    return load_json(settings_path)
+
+
 def extract_words(lyrics: str):
     # remove song sections label such as [Intro]
     song_sections = re.findall(r'\[\w+.+', lyrics)
@@ -39,10 +45,7 @@ def extract_words(lyrics: str):
     lyrics = lyrics.lower()
 
     # remove extra symbols
-    base_path = os.path.dirname(__file__)
-    json_path = os.path.join(base_path, 'settings.json')
-
-    json_data = load_json(json_path)
+    json_data = load_settings()
 
     symbols = json_data['ignored_symbols']
 
