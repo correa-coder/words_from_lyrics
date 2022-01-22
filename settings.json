@@ -1,6 +1,6 @@
 {
     "ignored_symbols": ["(", ")", ",", ".", "?", ":", "-"],
-    "ignored_words": [],
+    "ignored_words": ["oh", "ooh", "uh", "ah", "na"],
     "font": {
         "name": "Segoe UI",
         "size":{
