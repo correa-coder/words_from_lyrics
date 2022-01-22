@@ -1,0 +1,17 @@
+{
+    "ignored_symbols": ["(", ")", ",", ".", "?", ":", "-"],
+    "ignored_words": [],
+    "font": {
+        "name": "Segoe UI",
+        "size":{
+            "sm": 10,
+            "md": 14,
+            "lg": 20
+        }
+    },
+    "color":{
+        "primary": "#bd93f9",
+        "secondary": "#282a36",
+        "light": "#f8f8f2"
+    }
+}
