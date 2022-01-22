@@ -1,4 +1,6 @@
 import os
+import re
+import json
 
 
 def filename_from_path(path:str):
@@ -17,6 +19,15 @@ def load_txt(filename: str):
     return content
 
 
+def load_json(path):
+    content = {}
+
+    with open(path, 'r', encoding='utf-8') as json_file:
+        content = json.load(json_file)
+
+    return content
+
+
 def extract_words(lyrics: str):
     # remove song sections label such as [Intro]
     song_sections = re.findall(r'\[\w+.+', lyrics)
@@ -28,10 +39,17 @@ def extract_words(lyrics: str):
     lyrics = lyrics.lower()
 
     # remove extra symbols
-    symbols = ['(', ')', ',', '.', '?', ':', '-']
+    base_path = os.path.dirname(__file__)
+    json_path = os.path.join(base_path, 'settings.json')
+
+    json_data = load_json(json_path)
+
+    symbols = json_data['ignored_symbols']
 
     for symbol in symbols:
         lyrics = lyrics.replace(symbol, ' ')
+
+    # TODO: remove filler words such as na-na-na, ooh ...
 
     # remove line breaks
     if '\n' in lyrics:
