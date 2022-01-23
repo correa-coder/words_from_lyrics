@@ -6,9 +6,9 @@ SETTINGS = module.load_settings()
 
 PADX = 100
 PADY = 80
-FONT_MD = (
+FONT = (
     SETTINGS['font']['name'],
-    SETTINGS['font']['size']['md']
+    SETTINGS['font']['size']
 )
 
 
@@ -18,7 +18,7 @@ class ButtonPrimary(Button):
         Button.__init__(self, *args, **kwargs)
         self['fg'] = SETTINGS['color']['text']
         self['bg'] = SETTINGS['color']['button']
-        self['font'] = FONT_MD
+        self['font'] = FONT
         self['bd'] = 0
 
 
@@ -29,7 +29,7 @@ class FrameResult(Frame):
         Frame.__init__(self, *args, **kwargs)
         result_label = Label(self,
                              text='Result will show here',
-                             font=FONT_MD,
+                             font=FONT,
                              fg=SETTINGS['color']['text'],
                              bg=SETTINGS['color']['background']
         )
