@@ -16,8 +16,8 @@ class ButtonPrimary(Button):
     """customized tkinter button"""
     def __init__(self, *args, **kwargs):
         Button.__init__(self, *args, **kwargs)
-        self['fg'] = SETTINGS_DATA['color']['light']
-        self['bg'] = SETTINGS_DATA['color']['primary']
+        self['fg'] = SETTINGS_DATA['color']['text']
+        self['bg'] = SETTINGS_DATA['color']['button']
         self['font'] = FONT_MD
         self['bd'] = 0
 
@@ -30,8 +30,8 @@ class FrameResult(Frame):
         result_label = Label(self,
                              text='Result will show here',
                              font=FONT_MD,
-                             fg=SETTINGS_DATA['color']['light'],
-                             bg=SETTINGS_DATA['color']['secondary']
+                             fg=SETTINGS_DATA['color']['text'],
+                             bg=SETTINGS_DATA['color']['background']
         )
         result_label.pack(padx=PADX, pady=PADY)
         
@@ -42,7 +42,7 @@ def show_result():
     window = Toplevel()
     window.title('Extracted words')
     frm = FrameResult(
-        window, bg=SETTINGS_DATA['color']['secondary'],
+        window, bg=SETTINGS_DATA['color']['background'],
     )
     frm.pack(fill="both", expand=True)
 
@@ -51,7 +51,7 @@ root = Tk()
 root.title('Words from Lyrics')
 # root.geometry('250x100')
 
-frame = Frame(root, bg=SETTINGS_DATA['color']['secondary'])
+frame = Frame(root, bg=SETTINGS_DATA['color']['background'])
 frame.pack(fill="both", expand=True)
 
 ButtonPrimary(frame, text='Open lyrics file', command=show_result).pack(padx=PADX, pady=PADY)
