@@ -6,11 +6,10 @@ def run():
     path = input('Enter the file path: ')
     content = module.load_txt(path)
     words = module.extract_words(content)
+    words_listed = module.itemize(words)
     print()
     print('Extracted words')
-
-    for word in words:
-        print(f'- {word}')
+    print(words_listed)
 
 
 if __name__ == '__main__':
