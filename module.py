@@ -3,6 +3,9 @@ import re
 import json
 
 
+BASE_PATH = os.path.dirname(__file__)
+
+
 def filename_from_path(path:str):
     return os.path.split(path)[-1]
 
@@ -29,8 +32,7 @@ def load_json(path):
 
 
 def load_settings():
-    base_path = os.path.dirname(__file__)
-    settings_path = os.path.join(base_path, 'settings.json')
+    settings_path = os.path.join(BASE_PATH, 'settings.json')
     return load_json(settings_path)
 
 
