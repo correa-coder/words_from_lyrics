@@ -36,6 +36,27 @@ def load_settings():
     return load_json(settings_path)
 
 
+def itemize(items: list):
+    """
+    Given a list as argument, itemize each item and return a string
+
+    Example:
+    my_items = itemize(['hello', 'world'])
+    print(my_items)
+
+    output:
+    - hello
+    - world
+
+    """
+    result = ''
+
+    for item in items:
+        result += f'- {item}\n'
+
+    return result
+
+
 def extract_words(lyrics: str):
     # remove song sections label such as [Intro]
     song_sections = re.findall(r'\[\w+.+', lyrics)
@@ -90,3 +111,4 @@ if __name__ == '__main__':
     sample = load_txt('sample_lyrics.txt')
     words = extract_words(sample)
     print(words)
+    print(itemize(words))
