@@ -3,11 +3,7 @@
     "ignored_words": ["oh", "ooh", "uh", "ah", "na"],
     "font": {
         "name": "Segoe UI",
-        "size":{
-            "sm": 10,
-            "md": 14,
-            "lg": 20
-        }
+        "size": 14
     },
     "color":{
         "button": "#bd93f9",
