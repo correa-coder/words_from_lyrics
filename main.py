@@ -43,17 +43,21 @@ def show_result():
     )
 
     lyrics = module.load_txt(file_path)
-    words = module.extract_words(lyrics)
-    words_listed = module.itemize(words)
 
-    window = Toplevel()
-    window.title('Extracted words')
-    frm = FrameResult(
-        window, bg=SETTINGS['color']['background'],
-    )
-    frm.pack(fill="both", expand=True)
+    if lyrics.startswith('ERROR'):
+        messagebox.showerror(title='Wrong file format', message=lyrics)
+    else:
+        words = module.extract_words(lyrics)
+        words_listed = module.itemize(words)
 
-    frm.result_label['text'] = words_listed
+        window = Toplevel()
+        window.title('Extracted words')
+        frm = FrameResult(
+            window, bg=SETTINGS['color']['background'],
+        )
+        frm.pack(fill="both", expand=True)
+
+        frm.result_label['text'] = words_listed
 
 
 root = Tk()
