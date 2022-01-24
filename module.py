@@ -6,10 +6,6 @@ import json
 BASE_PATH = os.path.dirname(__file__)
 
 
-def filename_from_path(path:str):
-    return os.path.split(path)[-1]
-
-
 def load_txt(filename: str):
     content = 'ERROR: Only .txt files allowed'
 
