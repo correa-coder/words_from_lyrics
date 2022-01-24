@@ -31,7 +31,8 @@ class FrameResult(Frame):
                              text='Result will show here',
                              font=FONT,
                              fg=SETTINGS['color']['text'],
-                             bg=SETTINGS['color']['background']
+                             bg=SETTINGS['color']['background'],
+                             justify='left'
         )
         self.result_label.pack(padx=PADX, pady=PADY)
         
