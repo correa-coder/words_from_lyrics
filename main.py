@@ -27,17 +27,23 @@ class FrameResult(Frame):
 
     def __init__(self, *args, **kwargs):
         Frame.__init__(self, *args, **kwargs)
-        result_label = Label(self,
+        self.result_label = Label(self,
                              text='Result will show here',
                              font=FONT,
                              fg=SETTINGS['color']['text'],
                              bg=SETTINGS['color']['background']
         )
-        result_label.pack(padx=PADX, pady=PADY)
+        self.result_label.pack(padx=PADX, pady=PADY)
         
 
 def show_result():
-    extracted_words = []
+    file_path = filedialog.askopenfilename(
+        filetypes=(('txt files', '*.txt'), ('all files', '*.*'))
+    )
+
+    lyrics = module.load_txt(file_path)
+    words = module.extract_words(lyrics)
+    words_listed = module.itemize(words)
 
     window = Toplevel()
     window.title('Extracted words')
@@ -45,6 +51,8 @@ def show_result():
         window, bg=SETTINGS['color']['background'],
     )
     frm.pack(fill="both", expand=True)
+
+    frm.result_label['text'] = words_listed
 
 
 root = Tk()
