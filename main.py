@@ -1,4 +1,4 @@
-from tkinter import Tk, Toplevel, Frame, Label, Button
+from tkinter import Tk, Toplevel, Frame, Button, Text, Scrollbar
 from tkinter import filedialog, messagebox
 import module
 
@@ -27,14 +27,24 @@ class FrameResult(Frame):
 
     def __init__(self, *args, **kwargs):
         Frame.__init__(self, *args, **kwargs)
-        self.result_label = Label(self,
-                             text='Result will show here',
+
+        # create scroll bar
+        text_scrollbar = Scrollbar(self)
+        text_scrollbar.pack(side="right", fill="y")
+
+        self.text_result = Text(self,
                              font=FONT,
                              fg=SETTINGS['color']['text'],
                              bg=SETTINGS['color']['background'],
-                             justify='left'
+                             width=10,
+                             height=15,
+                             yscrollcommand=text_scrollbar.set,
+                             padx=PADX,
+                             pady=PADY
         )
-        self.result_label.pack(padx=PADX, pady=PADY)
+        self.text_result.pack()
+
+        text_scrollbar.config(command=self.text_result.yview)
         
 
 def show_result():
@@ -48,7 +58,6 @@ def show_result():
         messagebox.showerror(title='Wrong file format', message=lyrics)
     else:
         words = module.extract_words(lyrics)
-        words_listed = module.itemize(words)
 
         window = Toplevel()
         window.title('Extracted words')
@@ -57,7 +66,8 @@ def show_result():
         )
         frm.pack(fill="both", expand=True)
 
-        frm.result_label['text'] = words_listed
+        for word in words:
+            frm.text_result.insert('end', f'- {word}\n')
 
 
 root = Tk()
